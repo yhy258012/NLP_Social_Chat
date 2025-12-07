@@ -320,8 +320,9 @@ ours VS deepseek-r1:1.5b  **97.80%**
 }
 ```
 
-前端：vue3来搭建
+# 前端：vue3来搭建
 ![controller.png](assets/controller.png)
+![img.png](assets/img.png)
 
 # 局限性与未来工作
 
