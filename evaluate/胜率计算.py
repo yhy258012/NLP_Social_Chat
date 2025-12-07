@@ -11,16 +11,16 @@ DEEPSEEK_BASE_URL = "https://api.deepseek.com"
 
 # 两个文件夹路径
 DIR_FINETUNED = "D:/program/ai_program/nlp_end_done/evaluate/results/"  # 微调模型结果
-DIR_BASE = "D:/program/ai_program/nlp_end_done/evaluate/results3/"  # Ollama模型结果
+DIR_BASE = "D:/program/ai_program/nlp_end_done/evaluate/results4/"  # Ollama模型结果
 OUTPUT_DIR = "D:/program/ai_program/nlp_end_done/evaluate/win_rate_results/"  # 结果保存路径
 
 # 场景文件映射 (微调文件名 : Ollama文件名)
 FILE_PAIRS = {
-    "多轮评估表_长辈.xlsx": "Ollama模型_多轮评估表_长辈.xlsx",
-    "多轮评估表_女友.xlsx": "Ollama模型_多轮评估表_女友.xlsx",
-    "多轮评估表_导师.xlsx": "Ollama模型_多轮评估表_导师.xlsx",
-    "多轮评估表_陌生人.xlsx": "Ollama模型_多轮评估表_陌生人.xlsx",
-    "多轮评估表_夫妻.xlsx": "Ollama模型_多轮评估表_夫妻.xlsx"
+    "多轮评估表_长辈.xlsx": "gpt-oss_20b-cloud_多轮评估表_长辈.xlsx",
+    "多轮评估表_女友.xlsx": "gpt-oss_20b-cloud_多轮评估表_女友.xlsx",
+    "多轮评估表_导师.xlsx": "gpt-oss_20b-cloud_多轮评估表_导师.xlsx",
+    "多轮评估表_陌生人.xlsx": "gpt-oss_20b-cloud_多轮评估表_陌生人.xlsx",
+    "多轮评估表_夫妻.xlsx": "gpt-oss_20b-cloud_多轮评估表_夫妻.xlsx"
 }
 
 # 人设 Prompt 映射

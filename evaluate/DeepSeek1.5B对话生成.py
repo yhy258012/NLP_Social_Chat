@@ -5,12 +5,12 @@ from tqdm import tqdm
 import ollama
 
 # ================= 配置区域 =================
-# Ollama 模型名称
-OLLAMA_MODEL_NAME = "gpt-oss:20b"
+# 确保这个模型名字在你的 cmd 输入 'ollama list' 能看到
+OLLAMA_MODEL_NAME = "gpt-oss:120b-cloud"
 
 # 文件路径配置
 EVAL_DATA_DIR = "D:/program/ai_program/nlp_end_done/evaluate/data/"
-OUTPUT_DIR = "D:/program/ai_program/nlp_end_done/evaluate/results4/"  # 修改为 result3 目录
+OUTPUT_DIR = "D:/program/ai_program/nlp_end_done/evaluate/results5/"
 
 SCENARIO_FILES = {
     "长辈": "elder_text.json",
@@ -28,7 +28,6 @@ ROLE_PROMPTS = {
     "夫妻": "你是一个情商在线、风趣暖心的伴侣。你现在的对话对象是你的【配偶】。对话充满生活烟火气，兼具幽默调侃与温柔包容。"
 }
 
-# 确保输出目录存在
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
@@ -39,14 +38,13 @@ class DeepChat:
     def chat(self, messages):
         """调用 Ollama 生成回复"""
         try:
-            # options 可以设置 temperature 等参数，这里保持默认或根据需要调整
             response = ollama.chat(
                 model=self.model_name,
                 messages=messages,
                 options={
                     "temperature": 0.7,
                     "top_p": 0.9,
-                    "num_ctx": 4096 # 确保上下文足够长
+                    "num_ctx": 4096
                 }
             )
             return response["message"]["content"]
@@ -56,7 +54,6 @@ class DeepChat:
 
 
 def format_history_for_excel(messages):
-    """格式化历史消息用于Excel展示"""
     text = ""
     for msg in messages:
         role = "AI" if msg['role'] == 'assistant' else "用户"
@@ -66,7 +63,6 @@ def format_history_for_excel(messages):
 
 
 def main():
-    # 初始化 Ollama 聊天类
     bot = DeepChat(OLLAMA_MODEL_NAME)
     print(f"🚀 已连接 Ollama 模型: {OLLAMA_MODEL_NAME}")
 
@@ -84,35 +80,24 @@ def main():
 
         excel_data = []
 
-        # 遍历每一个对话 Session
         for session_idx, item in enumerate(tqdm(data, desc=f"处理 {role_name}")):
             messages = item['messages']
 
-            # === 核心逻辑：遍历对话中的每一轮 ===
             for i in range(len(messages)):
                 msg = messages[i]
 
-                # 如果当前是 User 发言，且下一条是 AI 发言，这就是一个测试点
                 if msg['role'] == 'user' and (i + 1 < len(messages)) and messages[i + 1]['role'] == 'assistant':
 
-                    # 1. 截取到当前 User 的历史作为输入
-                    # 注意：为了避免修改原数据，这里使用 copy
                     raw_slice = messages[:i + 1]
                     input_msgs = [dict(m) for m in raw_slice]
 
-                    # 2. 强制注入 System Prompt
                     if input_msgs[0]['role'] == 'system':
                         input_msgs[0]['content'] = current_system_prompt
                     else:
                         input_msgs.insert(0, {"role": "system", "content": current_system_prompt})
 
-                    # 3. 提取真值 (Ground Truth)
                     reference_answer = messages[i + 1]['content']
-
-                    # 4. Ollama 模型生成
                     model_reply = bot.chat(input_msgs)
-
-                    # 5. 计算当前是第几轮 (粗略计算)
                     turn_index = (i + 1) // 2
 
                     excel_data.append({
@@ -121,15 +106,17 @@ def main():
                         "场景": role_name,
                         "对话历史 (Context)": format_history_for_excel(input_msgs[:-1]),
                         "当前提问": msg['content'],
-                        "【Ollama模型回复】": model_reply,  # 列名区分
+                        "【Ollama模型回复】": model_reply,
                         "【参考回复】": reference_answer,
                         "评分 (1-5)": ""
                     })
 
-        # 保存 Excel
         df = pd.DataFrame(excel_data)
-        # 文件名保持一致性，方便后续脚本读取
-        save_path = os.path.join(OUTPUT_DIR, f"gpt-oss:20b模型_多轮评估表_{role_name}.xlsx")
+
+        # === 修复点：处理文件名中的冒号，防止 Windows 报错 ===
+        safe_model_name = OLLAMA_MODEL_NAME.replace(":", "_")
+        save_path = os.path.join(OUTPUT_DIR, f"{safe_model_name}_多轮评估表_{role_name}.xlsx")
+
         df.to_excel(save_path, index=False)
         print(f"✅ 表格已生成: {save_path}")
 

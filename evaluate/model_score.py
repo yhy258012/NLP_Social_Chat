@@ -9,15 +9,15 @@ DEEPSEEK_API_KEY = "sk-b7a9f81ab82d44dc8ce89e97257e2c71"
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
 
 # 1. 修改输入目录为 Ollama 结果目录
-INPUT_DIR = "D:/program/ai_program/nlp_end_done/evaluate/results3/"
+INPUT_DIR = "D:/program/ai_program/nlp_end_done/evaluate/results4/"
 
 # 2. 修改为 Ollama 的文件名列表
 FILES_TO_EVAL = [
-    "Ollama模型_多轮评估表_长辈.xlsx",
-    "Ollama模型_多轮评估表_女友.xlsx",
-    "Ollama模型_多轮评估表_导师.xlsx",
-    "Ollama模型_多轮评估表_陌生人.xlsx",
-    "Ollama模型_多轮评估表_夫妻.xlsx"
+    "gpt-oss_20b-cloud_多轮评估表_长辈.xlsx",
+    "gpt-oss_20b-cloud_多轮评估表_女友.xlsx",
+    "gpt-oss_20b-cloud_多轮评估表_导师.xlsx",
+    "gpt-oss_20b-cloud_多轮评估表_陌生人.xlsx",
+    "gpt-oss_20b-cloud_多轮评估表_夫妻.xlsx"
 ]
 
 # 3. 完整的 Prompt 映射 (评分标准)
