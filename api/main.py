@@ -81,7 +81,7 @@ async def chat_completions(request: ChatRequest):
             full_messages.append(msg)
 
     print(f"当前角色: {role_name}")
-    print(full_messages) # 调试时打开
+    #print(full_messages) # 调试时打开
 
     # --- C. 预处理输入 ---
     input_ids = tokenizer.apply_chat_template(
