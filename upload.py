@@ -68,5 +68,5 @@ def merge_and_upload():
 
 if __name__ == "__main__":
     # 确保你已经登录
-    login(token="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")
+    login(token="xxxxxxxxxxxxxxxxxxxxxxxxx")  # 替换为你的 Hugging Face Token
     merge_and_upload()

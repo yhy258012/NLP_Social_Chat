@@ -8,7 +8,8 @@ from transformers import TextIteratorStreamer
 from model_loader import model_service, DEVICE
 from fastapi.responses import StreamingResponse
 import json
-
+import asyncio
+import random  # 引入随机库，让延迟更自然
 app = FastAPI(title="Qwen Social Chat API")
 
 # 1. 配置 CORS
@@ -140,6 +141,11 @@ async def chat_completions(request: ChatRequest):
                     "content": clean_text
                 }
                 yield f"data: {json.dumps(response_json, ensure_ascii=False)}\n\n"
+                await asyncio.sleep(random.uniform(0.02, 0.05))
+
+                # 2. (可选) 标点符号额外停顿：模拟人类思考/换气
+                if clean_text in [",", "，", ".", "。", "!", "！", "?", "？", "\n"]:
+                    await asyncio.sleep(0.1)
 
         # 打印完整的生成结果用于后台调试
         # print(f"AI回复: {generated_text}")

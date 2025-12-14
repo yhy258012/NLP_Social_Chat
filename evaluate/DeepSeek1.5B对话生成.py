@@ -6,11 +6,11 @@ import ollama
 
 # ================= 配置区域 =================
 # 确保这个模型名字在你的 cmd 输入 'ollama list' 能看到
-OLLAMA_MODEL_NAME = "gpt-oss:120b-cloud"
+OLLAMA_MODEL_NAME = "deepseek-v3.1:671b-cloud"
 
 # 文件路径配置
 EVAL_DATA_DIR = "D:/program/ai_program/nlp_end_done/evaluate/data/"
-OUTPUT_DIR = "D:/program/ai_program/nlp_end_done/evaluate/results5/"
+OUTPUT_DIR = "D:/program/ai_program/nlp_end_done/evaluate/results6/"
 
 SCENARIO_FILES = {
     "长辈": "elder_text.json",

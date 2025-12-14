@@ -6,21 +6,21 @@ from openai import OpenAI
 from tqdm import tqdm
 
 # ================= 配置区域 =================
-DEEPSEEK_API_KEY = "sk-b7a9f81ab82d44dc8ce89e97257e2c71"
+DEEPSEEK_API_KEY = "sk-xxxxxx"
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
 
 # 两个文件夹路径
 DIR_FINETUNED = "D:/program/ai_program/nlp_end_done/evaluate/results/"  # 微调模型结果
-DIR_BASE = "D:/program/ai_program/nlp_end_done/evaluate/results4/"  # Ollama模型结果
+DIR_BASE = "D:/program/ai_program/nlp_end_done/evaluate/results6/"  # Ollama模型结果
 OUTPUT_DIR = "D:/program/ai_program/nlp_end_done/evaluate/win_rate_results/"  # 结果保存路径
 
 # 场景文件映射 (微调文件名 : Ollama文件名)
 FILE_PAIRS = {
-    "多轮评估表_长辈.xlsx": "gpt-oss_20b-cloud_多轮评估表_长辈.xlsx",
-    "多轮评估表_女友.xlsx": "gpt-oss_20b-cloud_多轮评估表_女友.xlsx",
-    "多轮评估表_导师.xlsx": "gpt-oss_20b-cloud_多轮评估表_导师.xlsx",
-    "多轮评估表_陌生人.xlsx": "gpt-oss_20b-cloud_多轮评估表_陌生人.xlsx",
-    "多轮评估表_夫妻.xlsx": "gpt-oss_20b-cloud_多轮评估表_夫妻.xlsx"
+    "多轮评估表_长辈.xlsx": "deepseek-v3.1_671b-cloud_多轮评估表_长辈.xlsx",
+    "多轮评估表_女友.xlsx": "deepseek-v3.1_671b-cloud_多轮评估表_女友.xlsx",
+    "多轮评估表_导师.xlsx": "deepseek-v3.1_671b-cloud_多轮评估表_导师.xlsx",
+    "多轮评估表_陌生人.xlsx": "deepseek-v3.1_671b-cloud_多轮评估表_陌生人.xlsx",
+    "多轮评估表_夫妻.xlsx": "deepseek-v3.1_671b-cloud_多轮评估表_夫妻.xlsx"
 }
 
 # 人设 Prompt 映射
