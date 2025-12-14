@@ -1,0 +1,37 @@
+/* Global reset: remove default browser margin and set box-sizing */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* optional sensible defaults for app */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Light theme variables */
+}
+
+:root {
+    --app-bg: #f6f8fb;
+    --surface: #ffffff;
+    --surface-2: #fbfdff;
+    --muted: #6b7280;
+    --text: #0f172a;
+    --accent: #4f46e5;
+    --bubble-user: #eef2ff;
+    --bubble-assistant: #ffffff;
+    --glass: rgba(255, 255, 255, 0.6);
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+body {
+    background-color: var(--app-bg);
+    color: var(--text);
+}
